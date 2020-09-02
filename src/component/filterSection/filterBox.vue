@@ -1,6 +1,6 @@
 <template>
     <div class="check-filter">
-        <span :class="{'checkbox':true,active:checked}" @click="checked=!checked"></span>
+        <span :class="{'checkbox':true,active:checked}" @click="checkedFilter"></span>
         <span>{{title}}</span>
     </div>
 </template>
@@ -11,6 +11,16 @@
         data(){
             return{
                 checked:false
+            }
+        },
+        methods:{
+            checkedFilter(){
+                this.checked=!this.checked;
+                const data={
+                    genre:this.title,
+                    check:this.checked
+                }
+                this.$emit("checkFilter",data)
             }
         }
     }

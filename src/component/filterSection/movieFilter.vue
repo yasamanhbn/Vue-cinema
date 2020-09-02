@@ -3,7 +3,7 @@
         <h1>Filter Result</h1>
         <hr style="height:5px;color:white;background-color:white"/>
         <div>
-            <filter-box v-for="genre in genres" :title="genre"></filter-box>
+            <filter-box v-for="genre in genres" :title="genre" @checkFilter="checkFilter($event)"></filter-box>
         </div>
     </div>
 </template>
@@ -19,6 +19,11 @@
         },
         components:{
             filterBox:filterBox
+        },
+        methods:{
+            checkFilter(data){
+                this.$emit("checkFilter",data)
+            }
         }
     }
 </script>
