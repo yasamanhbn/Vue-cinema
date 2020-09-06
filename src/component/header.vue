@@ -26,4 +26,9 @@
         font-size: 50px;
         color: white;
     }
+    @media (max-width: 500px) {
+        h1{
+            font-size: 25px;
+        }
+    }
 </style>

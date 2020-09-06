@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        props:["title"],
+        props:["title","time"],
         data(){
             return{
                 checked:false
@@ -16,8 +16,17 @@
         methods:{
             checkedFilter(){
                 this.checked=!this.checked;
+                let time=null
+                let genre=null
+                if(this.time) {
+                    time = this.title
+                }
+                else {
+                    genre = this.title
+                }
                 const data={
-                    genre:this.title,
+                    time:time,
+                    genre:genre,
                     check:this.checked
                 }
                 this.$emit("checkFilter",data)

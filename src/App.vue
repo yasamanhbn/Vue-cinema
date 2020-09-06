@@ -2,7 +2,8 @@
     <div>
         <header-app></header-app>
         <section>
-            <movie-list :genresFilter=genresFilter></movie-list>
+            <movie-list :genresFilter=genresFilter
+                        :timesFilter="timesFilter"></movie-list>
             <movie-filter @checkFilter="filterGenres($event)"></movie-filter>
         </section>
     </div>
@@ -16,7 +17,8 @@
     export default {
         data(){
             return{
-                genresFilter:[]
+                genresFilter:[],
+                timesFilter:[]
             }
         },
         components: {
@@ -26,11 +28,15 @@
         },
         methods:{
             filterGenres(data){
-                if(data.check)
-                    this.genresFilter.push(data.genre)
+                if(data.check) {
+                    if(data.genre)
+                        this.genresFilter.push(data.genre);
+                    if(data.time)
+                        this.timesFilter.push(data.time);
+                }
                 else {
-
                     this.genresFilter.splice(this.genresFilter.indexOf(data.genre),1)
+                    this.timesFilter.splice(this.timesFilter.indexOf(data.time),1)
                 }
             }
 
@@ -47,5 +53,6 @@
     }
     section{
         display: flex;
+        flex-wrap: wrap;
     }
 </style>
