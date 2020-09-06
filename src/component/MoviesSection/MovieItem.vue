@@ -4,7 +4,11 @@
             <img :src="movie.Poster" class="col-12" :alt="movie.Title">
         </div>
         <div class="col-md-8 col-sm-7">
-            <h4 class="title">{{movie.Title}}</h4>
+            <router-link tag="h4"
+                         class="title"
+                         :to="{name: 'movie'}">
+                {{movie.Title}}
+            </router-link>
             <span class="rated col-5">{{movie.Rated}}</span>
             <div class="sessions">
                 <div v-for="session in filterSessions(sessions)" class="session-time">
@@ -27,7 +31,7 @@
             filterSessionsTime(session) {
                 if (!this.$moment(session.time).isSame(this.$moment(Date.now()), 'day')) {
                     return false
-                }else if (!this.timesFilter.length || this.timesFilter.length===2) {
+                } else if (!this.timesFilter.length || this.timesFilter.length === 2) {
                     return true
                 } else if (this.timesFilter[0] === timesUtil.AFTER_6PM) {
                     return this.$moment(session.time).hour() >= 18
@@ -51,6 +55,9 @@
         color: #ffa624;
         display: inline;
         margin: 1%;
+    }
+    .title:hover{
+        cursor: pointer;
     }
 
     .rated {

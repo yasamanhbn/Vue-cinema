@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
     export default {
         props:["title","time"],
         data(){
