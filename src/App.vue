@@ -1,7 +1,7 @@
 <template>
     <div>
         <header-app></header-app>
-        <router-view></router-view>
+        <router-view :movies="movies"></router-view>
     </div>
 </template>
 
@@ -13,6 +13,17 @@
         components: {
             headerApp: header,
             Overview:Overview
+        },
+        data() {
+            return {
+                movies : []
+            }
+        },
+        created(){
+            this.$http.get("/api")
+                .then(response=>{
+                    this.movies = response.data;
+                })
         }
     }
 </script>
