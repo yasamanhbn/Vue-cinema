@@ -6,6 +6,8 @@
                 @click="daySelected(day)">
                 {{ formatDay(day) }}
             </li>
+            <li class="day-selector" @click="changeDay(1)"><</li>
+            <li class="day-selector" @click="changeDay(-1)">></li>
         </ul>
     </div>
 </template>
@@ -30,6 +32,10 @@
             daySelected(day){
                 this.selected = day;
                 this.$emit("day-select",day);
+            },
+            changeDay(index){
+                const newDay = this.$moment(this.selected).add(index,'days');
+                this.daySelected(newDay);
             }
         }
     }
@@ -48,6 +54,7 @@
         display: flex;
         justify-content: space-around;
         background: #232323 ;
+        list-style: none;
     }
     .day{
         font-size: 25px;
@@ -63,9 +70,20 @@
         text-decoration: underline;
         color: darkred;
     }
-    @media (max-width: 1000px) {
+    @media (max-width: 800px) {
+        .day-selector{
+            font-size: 40px;
+        }
         .day{
-            font-size: 16px;
+            display: none;
+        }
+        .active{
+            display: inline;
+         }
+    }
+    @media (min-width: 800px) {
+        .day-selector{
+            display: none;
         }
     }
 </style>

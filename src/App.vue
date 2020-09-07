@@ -29,8 +29,10 @@
 </script>
 
 <style>
-    * {
+    body{
         background: #343333;
+    }
+    * {
         margin: 0;
         padding: 0;
         color: white;
